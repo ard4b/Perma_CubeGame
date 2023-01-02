@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Counter : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int counterValue = 0;
+    public static Counter Instance;
+    public TMP_Text tmpText;
     void Start()
     {
-        
+        Instance = this;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void IncreaseCounter()
     {
-        
+        counterValue++;
+        tmpText.text = counterValue.ToString();
     }
 }

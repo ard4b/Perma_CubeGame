@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static Player Instance;
+    public HitButton gameButton;
+    internal Quaternion zeroPoint = new Quaternion(0f, 0f, 0f, 0f);
     void Start()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        Turn();
+    }
+
+    void Turn()
+    {
+        if (gameButton.TurnValue % 2 == 0)
+        {
+            transform.Rotate(70 * Time.deltaTime, 0, 0);
+
+        }
+        else if (gameButton.TurnValue % 2 == 1)
+        {
+            transform.Rotate(0, 0, 70 * Time.deltaTime);
+
+        }
     }
 }

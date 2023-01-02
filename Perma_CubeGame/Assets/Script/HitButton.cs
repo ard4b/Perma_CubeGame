@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class HitButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool isHit;
+    public Counter counter;
+    public Player Rota;
+    internal int TurnValue = 0;
+    internal float playerRot;
+    public void OnButtonClick()
     {
-        
+        // Çok uzun olduðundan kýsalttým
+        playerRot = Mathf.Abs(Player.Instance.transform.rotation.eulerAngles.x);
+        //Yüzlerle tek tek uðraþmamak için for döngüsüne aldým
+        for (int i = 0; i <= 3; i++)
+        {
+            if (playerRot >= 85 * i && playerRot <= 95 * i && !isHit)
+            {
+                Rota.transform.rotation = Rota.zeroPoint;// Küp her doðru clickte 0 lanýyor
+                StartCoroutine(ResetHit());
+                counter.IncreaseCounter();
+                TurnValue += 1;// Eðer click doðru atýlýrsa küp z ekseni etrafýnda dönmeye ba
+                isHit = true;
+            }
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    public IEnumerator ResetHit()
     {
-        
+        yield return new WaitForSeconds(0.5f);
+        isHit = false;
     }
 }
