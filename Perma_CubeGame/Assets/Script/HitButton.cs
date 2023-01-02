@@ -11,17 +11,17 @@ public class HitButton : MonoBehaviour
     internal float playerRot;
     public void OnButtonClick()
     {
-        // Çok uzun olduðundan kýsalttým
+        // Cok uzun oldugundan kisalttim
         playerRot = Mathf.Abs(Player.Instance.transform.rotation.eulerAngles.x);
-        //Yüzlerle tek tek uðraþmamak için for döngüsüne aldým
+        //Yuzlerle tek tek ugrasmamak icin for dongusune aldim
         for (int i = 0; i <= 3; i++)
         {
             if (playerRot >= 85 * i && playerRot <= 95 * i && !isHit)
             {
-                Rota.transform.rotation = Rota.zeroPoint;// Küp her doðru clickte 0 lanýyor
+                Rota.transform.rotation = Rota.zeroPoint;// Kup her dogru clickte 0 laniyor
                 StartCoroutine(ResetHit());
                 counter.IncreaseCounter();
-                TurnValue += 1;// Eðer click doðru atýlýrsa küp z ekseni etrafýnda dönmeye ba
+                TurnValue += 1;// Counter cift sayi ise x tek sayi ise z ekseninde donmeye basliyor
                 isHit = true;
             }
         }
